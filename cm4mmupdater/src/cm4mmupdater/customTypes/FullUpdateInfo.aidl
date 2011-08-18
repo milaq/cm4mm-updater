@@ -1,0 +1,2 @@
+package cm4mmupdater.customTypes;
+parcelable FullUpdateInfo;

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="cm4mmupdater.ui"
+      android:versionCode="1" android:versionName="1.2">
+    <uses-sdk android:minSdkVersion="8" />
+
+    <application android:label="@string/app_name" android:icon="@drawable/icon">
+<meta-data
+                android:name="com.a0soft.gphone.aTrackDog.webURL"
+                android:value="http://code.google.com/p/cyanogen-updater"/>
+        <meta-data
+                android:name="com.a0soft.gphone.aTrackDog.dlURL"
+                android:value="http://code.google.com/p/cyanogen-updater/downloads/list"/>
+
+        <activity
+                android:name="cm4mmupdater.ui.MainActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/Theme.loading">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.settings.SYSTEM_UPDATE_SETTINGS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name="cm4mmupdater.ui.DownloadActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name="cm4mmupdater.ui.ConfigActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name="cm4mmupdater.ui.ApplyUpdateActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name="cm4mmupdater.ui.ThemeListActivity"/>
+        <activity
+                android:name="cm4mmupdater.ui.ThemeListNewActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name="cm4mmupdater.ui.ScreenshotActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name="cm4mmupdater.ui.ScreenshotDetailActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+
+        <receiver android:name="cm4mmupdater.receiver.StartupReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <category android:name="android.intent.category.HOME"/>
+            </intent-filter>
+        </receiver>
+
+        <service android:name="cm4mmupdater.service.UpdateCheckService"
+                 android:process="cm4mmupdater.service.UpdateCheckService">
+            <intent-filter>
+                <action android:name="cm4mmupdater.interfaces.IUpdateCheckService"/>
+            </intent-filter>
+        </service>
+        <service android:name="cm4mmupdater.service.DownloadService"
+                 android:process="cm4mmupdater.service.DownloadService">
+            <intent-filter>
+                <action android:name="cm4mmupdater.interfaces.IDownloadService"/>
+            </intent-filter>
+        </service>
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+</manifest>
